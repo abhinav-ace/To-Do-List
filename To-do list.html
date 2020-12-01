@@ -1,0 +1,304 @@
+<html>
+    
+    <head>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Texturina:wght@100;300&display=swap" rel="stylesheet"> 
+        <style>
+        
+            #head{
+                
+                text-align: center;
+                width:200px;
+                margin:auto;
+                margin-top:50px;
+                margin-bottom:50px;
+                font-family: 'Texturina', serif;
+                font-size:30px;
+            }
+            
+            #container{
+                
+                font-family: 'Texturina', serif;
+                text-align:center
+            }
+
+            .border{
+                
+                border-color:skyblue;
+                border-radius:5px; 
+                border-width: thin;
+                
+            }
+            
+            #itemInput{
+                
+                height:30px;
+                width:400px;
+                padding-left:10px;
+                
+            }
+            
+            #itemTime{
+                
+                height:30px;
+                width:110px;
+                padding-left:10px;
+                
+            }
+            
+            #addbtn{
+                
+                height:30px;
+                
+            }
+            
+            #addbtn:hover{
+                
+                background-color:skyblue;
+                
+            }
+            
+            #tasksTable{
+                
+                margin-top:50px;
+                border:1px solid black;
+                text-align: left;
+                
+            }
+            
+            td{
+                
+                padding:7px ;
+                                    
+            }
+            
+            
+            .center{
+                
+                margin-left: auto;
+                margin-right: auto;
+                width:540px;
+                
+            }
+            
+            .capitalize{
+                
+                text-transform: capitalize;
+                
+            }
+            
+            .fa{
+                
+                letter-spacing: 5px;
+            }
+            
+            
+            .fa-check-circle{
+                
+                color:lightseagreen;
+                
+            }
+            
+            .fa-edit{
+                
+                color:lightskyblue;
+            }
+            
+            .fa-times-circle{
+                
+                color:lightcoral;
+            }
+            
+            #clearbtn{
+                
+                margin-top:20px;
+                height:30px;
+                background-color: white;
+            }
+            
+            #clearbtn:hover{
+                
+                background-color: lightblue;
+            }
+            
+            .done{
+                
+                text-decoration: line-through;
+                color:#999;
+            }
+            .present{
+                
+                background-color: #ffcccb;
+                height:50px;
+                padding-top:20px;
+            }
+            
+            
+        </style>
+    
+    
+    </head>
+    
+    <body>
+    
+        <div id="container">
+            
+            <div id="head">To-Do List</div>
+            <div>
+
+                <input id="itemInput" class="border" type="text" placeholder="Task">
+                <input id="itemTime" class="border" type="time" placeholder="Time">
+                <button id="addbtn" class="border" type="submit">Add Item</button>
+            </div>
+            <div>
+
+                <table id="tasksTable" class="center">
+                    <col style="width:50%">
+                    <col style="width:25%">
+                    <col style="width:25%">
+                    <tr>
+                        <td id="taskName" style="font-weight:1000">
+                            Task
+                        </td>
+                        <td id="taskTime" style="font-weight:1000">
+                            Scheduled at
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            
+            <div>
+            
+                <button id="clearbtn" class="border">Clear List</button>
+            
+            </div>
+        </div>
+        
+        <script src="https://kit.fontawesome.com/26921bfa63.js" crossorigin="anonymous"></script>
+        <script>
+            
+            let present=new Set();
+            let idno=0;
+            
+            addbtn.addEventListener("click",()=>{
+                let task=document.getElementById("itemInput").value;
+                let time=document.getElementById("itemTime").value;
+                
+                if (present.has(task)){
+                    
+                    let div1=document.createElement("div");
+                    let div1txt=document.createTextNode("Task Already Present");
+                    div1.append(div1txt);
+                    container.prepend(div1);
+                    div1.classList="present";
+                    
+                    document,setTimeout(()=>{
+                        div1.remove();
+                    },2000);
+                    
+                }
+                
+                else if(task=="" || time==""){
+                    
+                    let div1=document.createElement("div");
+                    let div1txt=document.createTextNode("Invalid Input");
+                    div1.append(div1txt);
+                    container.prepend(div1);
+                    div1.classList="present";
+                    
+                    document,setTimeout(()=>{
+                        div1.remove();
+                    },2000);
+                    
+                }
+                
+                else if (task!="" && time!="" && !present.has(task)){
+                    
+                    let row1=document.createElement("tr");
+                    let col1=document.createElement("td");
+                    let col1txt=document.createTextNode(task);
+                    col1.classList="capitalize";
+                    let col2=document.createElement("td");
+                    let col2txt=document.createTextNode(time);
+                    let col3=document.createElement("td");
+                    col3.style.letterSpacing="10px";
+                    let col3a1=document.createElement("a");
+                    let col3i1=document.createElement("i");
+                    col3i1.classList="far fa-check-circle fa-lg";
+                    let col3a2=document.createElement("a");
+                    let col3i2=document.createElement("i");
+                    col3i2.classList="far fa-edit fa-lg";
+                    let col3a3=document.createElement("a");
+                    let col3i3=document.createElement("i");
+                    col3i3.classList="far fa-times-circle fa-lg";
+
+
+                    col1.append(col1txt)
+                    col2.append(col2txt)
+                    col3.append(col3a1)
+                    col3a1.append(col3i1)
+                    col3.append(col3a2)
+                    col3a2.append(col3i2)
+                    col3.append(col3a3)
+                    col3a3.append(col3i3)
+                    row1.append(col1)
+                    row1.append(col2)
+                    row1.append(col3)
+                    tasksTable.append(row1)
+                    
+                    present.add(task)
+                    document.getElementById("itemInput").value="";
+                    document.getElementById("itemTime").value="";
+                    
+                    
+                    idno+=1;
+                    row1.setAttribute("id",idno);
+                    
+                    col3a1.addEventListener("click",()=>{
+                        
+                        col1.classList.add("done");
+                        col2.classList.add("done");
+                        
+                    })
+                    
+                    col3a2.addEventListener("click",()=>{
+                        
+                        let editid=col3a2.parentElement.parentElement.getAttribute("id");
+                        let editval=document.getElementById(editid).childNodes[0].textContent;
+                        let edittime=document.getElementById(editid).childNodes[1].textContent;
+                        document.getElementById("itemInput").value=editval;
+                        document.getElementById("itemTime").value=edittime;
+                        document.getElementById(editid).remove()
+                        present.delete(task);
+                        
+                    })
+                    
+                    col3a3.addEventListener("click",()=>{
+                        
+                        let delid=col3a2.parentElement.parentElement.getAttribute("id");
+                        document.getElementById(delid).remove();
+                        present.delete(task);
+                        
+                    })
+                }                       
+            });
+            
+            clearbtn.addEventListener("click",()=>{
+                
+                for(let i=1;i<=idno;i++){
+                    if(document.getElementById(i)){
+                        document.getElementById(i).remove();
+                    }
+                }                
+                present.clear();
+            });
+            
+            
+        </script>    
+    </body>
+</html>
