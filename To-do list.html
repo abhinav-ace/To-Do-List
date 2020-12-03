@@ -27,50 +27,43 @@
                 
                 border-color:skyblue;
                 border-radius:5px; 
-                border-width: thin;
-                
+                border-width: thin;                
             }
             
             #itemInput{
                 
                 height:30px;
                 width:400px;
-                padding-left:10px;
-                
+                padding-left:10px;                
             }
             
             #itemTime{
                 
                 height:30px;
                 width:110px;
-                padding-left:10px;
-                
+                padding-left:10px;                
             }
             
             #addbtn{
                 
-                height:30px;
-                
+                height:30px;                
             }
             
             #addbtn:hover{
                 
-                background-color:skyblue;
-                
+                background-color:skyblue;                
             }
             
             #tasksTable{
                 
                 margin-top:50px;
                 border:1px solid black;
-                text-align: left;
-                
+                text-align: left;                
             }
             
             td{
                 
-                padding:7px ;
-                                    
+                padding:7px;                                    
             }
             
             
@@ -78,14 +71,12 @@
                 
                 margin-left: auto;
                 margin-right: auto;
-                width:540px;
-                
+                width:540px;                
             }
             
             .capitalize{
                 
-                text-transform: capitalize;
-                
+                text-transform: capitalize;                
             }
             
             .fa{
@@ -96,8 +87,7 @@
             
             .fa-check-circle{
                 
-                color:lightseagreen;
-                
+                color:lightseagreen;                
             }
             
             .fa-edit{
@@ -127,6 +117,7 @@
                 text-decoration: line-through;
                 color:#999;
             }
+            
             .present{
                 
                 background-color: #ffcccb;
@@ -135,24 +126,19 @@
             }
             
             
-        </style>
-    
-    
+        </style>    
     </head>
     
     <body>
     
-        <div id="container">
-            
+        <div id="container">            
             <div id="head">To-Do List</div>
             <div>
-
                 <input id="itemInput" class="border" type="text" placeholder="Task">
                 <input id="itemTime" class="border" type="time" placeholder="Time">
                 <button id="addbtn" class="border" type="submit">Add Item</button>
             </div>
             <div>
-
                 <table id="tasksTable" class="center">
                     <col style="width:50%">
                     <col style="width:25%">
@@ -169,13 +155,9 @@
                         </td>
                     </tr>
                 </table>
-
-            </div>
-            
-            <div>
-            
-                <button id="clearbtn" class="border">Clear List</button>
-            
+            </div>            
+            <div>            
+                <button id="clearbtn" class="border">Clear List</button>            
             </div>
         </div>
         
@@ -199,8 +181,7 @@
                     
                     document,setTimeout(()=>{
                         div1.remove();
-                    },2000);
-                    
+                    },2000);                    
                 }
                 
                 else if(task=="" || time==""){
@@ -213,8 +194,7 @@
                     
                     document,setTimeout(()=>{
                         div1.remove();
-                    },2000);
-                    
+                    },2000);                    
                 }
                 
                 else if (task!="" && time!="" && !present.has(task)){
@@ -237,7 +217,6 @@
                     let col3i3=document.createElement("i");
                     col3i3.classList="far fa-times-circle fa-lg";
 
-
                     col1.append(col1txt)
                     col2.append(col2txt)
                     col3.append(col3a1)
@@ -254,16 +233,14 @@
                     present.add(task)
                     document.getElementById("itemInput").value="";
                     document.getElementById("itemTime").value="";
-                    
-                    
+                                        
                     idno+=1;
                     row1.setAttribute("id",idno);
                     
                     col3a1.addEventListener("click",()=>{
                         
                         col1.classList.add("done");
-                        col2.classList.add("done");
-                        
+                        col2.classList.add("done");                        
                     })
                     
                     col3a2.addEventListener("click",()=>{
@@ -274,16 +251,14 @@
                         document.getElementById("itemInput").value=editval;
                         document.getElementById("itemTime").value=edittime;
                         document.getElementById(editid).remove()
-                        present.delete(task);
-                        
+                        present.delete(task);                        
                     })
                     
                     col3a3.addEventListener("click",()=>{
                         
                         let delid=col3a2.parentElement.parentElement.getAttribute("id");
                         document.getElementById(delid).remove();
-                        present.delete(task);
-                        
+                        present.delete(task);                        
                     })
                 }                       
             });
@@ -296,8 +271,7 @@
                     }
                 }                
                 present.clear();
-            });
-            
+            });         
             
         </script>    
     </body>
